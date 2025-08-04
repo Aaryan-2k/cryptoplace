@@ -1,0 +1,18 @@
+table{
+    margin-top:30px;
+    color:white;
+    border-radius:10px;
+    width:80%;
+    max-width:800px;
+    text-align:center;
+    border-collapse: collapse;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background: linear-gradient(rgb(49, 0, 62), rgb(0, 0, 56));
+}
+table td{
+
+    border-top: 1px solid white;
+    padding: 15px;
+
+}
