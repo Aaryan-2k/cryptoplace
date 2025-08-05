@@ -38,10 +38,28 @@
     width: 85px;
  }
 
- .search-container{
+.search-container{
     border-radius: 5px;
     background-color: white;
     display:flex;
     align-items: center;
     justify-content: center;
  }
+
+.suggest-dropdown{
+   position: relative;
+   top:-5px;
+   color:black;
+   background-color: white;
+   width:350px;
+}
+.suggest-Item{
+   border:none;
+   border-bottom: 1px solid rgb(240, 236, 236);
+   font-size:larger;
+}
+
+.suggest-Item:hover{
+   background-color: rgb(216, 215, 215);
+
+}
