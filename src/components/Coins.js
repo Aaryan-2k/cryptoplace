@@ -1,8 +1,10 @@
 import './Coins.css'
 import { useContext } from 'react'
+import {useNavigate} from 'react-router-dom'
 import {CoinContext} from '../context/CoinContext'
 
 export default function Coins(){
+    const navigate=useNavigate();
     const {coins,currency}=useContext(CoinContext)
     
     const formatNumber = (number, maximumFractionDigits = 3) => {
@@ -30,12 +32,13 @@ export default function Coins(){
             <tbody>
                     {
                         coins.map((coin,index)=>(
-                            <tr>
+                           <tr className='coin-select' onClick={()=>navigate(`/coin/${coin.id}`)}>
                             <td>{index+1}</td>
                             <td className='coin-name'><img src={coin.image} height='35'></img>{coin.name}</td>
                             <td>{formatNumber(coin.current_price)}</td>
                             <td className={parseFloat(coin.price_change_24h)<0 ? 'neg': parseFloat(coin.price_change_24h)>0 ? 'pos' : 'nothing' }>{formatNumber(coin.price_change_24h,2)}</td>
                             <td>{formatNumber(coin.market_cap,0)}</td>
+    
                             </tr>
                         ))
                     }

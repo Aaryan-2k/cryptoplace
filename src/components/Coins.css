@@ -48,3 +48,9 @@ table th{
     border-radius: none;
     border: 1px solid white;
 }
+.coin-select:hover{
+    background-color:rgba(200, 200, 200, 0.2);
+    cursor:pointer;
+    
+
+}

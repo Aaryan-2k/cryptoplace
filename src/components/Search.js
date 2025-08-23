@@ -1,16 +1,23 @@
 import './Search.css'
 import { useState,useEffect,useContext } from 'react'
 import {CoinContext} from '../context/CoinContext'
+import { useNavigate } from 'react-router-dom'
 export default function Search(){
-    const {allcoins}=useContext(CoinContext)
+    const navigate=useNavigate()
+    const {allcoins,fetchCoinsData}=useContext(CoinContext)
     const [suggetions, setSugggetions]=useState([])
     const [search, setSearch]=useState('');
-    const [show, setShow]=useState(false);
 
     function searchHandler(event){
         setSearch(event.target.value)
     }
-
+    
+  
+    function searchButtonHandler(){
+        setSugggetions([])
+        const coinIds=suggetions.map(coin=>coin.id)
+        fetchCoinsData(coinIds);
+    }
     function get_suggetions(){
         let lowerCaseSearchTerm=search.toLowerCase()
         const filtered = allcoins.filter(coin =>coin.name.toLowerCase().includes(lowerCaseSearchTerm))
@@ -23,17 +30,14 @@ export default function Search(){
             if (!aStartsWith && bStartsWith) return 1;
             return aName.length - bName.length;
         });
-        setSugggetions(filtered.slice(0,10))
+        setSugggetions(filtered)
+        console.log(filtered)
 
     }
-    useEffect(()=>{ 
+    useEffect(()=>{
         if(search!=''){
-            setShow(true)
-            get_suggetions()
-        } 
-        else{
-            setShow(false)
-        } 
+        get_suggetions()
+        }
     },[search])
 
     return(
@@ -44,14 +48,11 @@ export default function Search(){
             </div>
             <div className='search-wrapper'>
                 <div className="search-container">
-                    <input type='search' placeholder="Search crypto..." onChange={searchHandler}></input>
-                    <button>Search</button>
+                    <input type='search' placeholder="Search crypto..." onChange={searchHandler} value={search}></input>
+                    <button onClick={searchButtonHandler}>Search</button>
                 </div>
-                
                 <div className='suggest-dropdown'>{
-                    show && (
-                        suggetions.slice(0,5).map((coin)=>(<div className='suggest-Item'>{coin.name}</div>))
-                    )
+                        suggetions.slice(0,5).map((coin)=>(<div onClick={()=>navigate(`coin/${coin.id}`)} className='suggest-Item'>{coin.name}</div>))
                     }
                     </div>
             </div>

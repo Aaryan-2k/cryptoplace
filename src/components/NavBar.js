@@ -1,6 +1,7 @@
 import './NavBar.css'
 import { useContext } from 'react'
 import { CoinContext } from '../context/CoinContext'
+import {Link} from 'react-router-dom'
 export default function NavBar(){
     const {setCurrency,currency}=useContext(CoinContext)
     function changeHandler(event){
@@ -8,9 +9,9 @@ export default function NavBar(){
     }
     return(
         <div className='navbar'>
-           <h1 className='nav-head'>CryptoPlace</h1>
+           <h1 className='nav-head'><Link to='/'>CryptoPlace</Link></h1>
             <div className='nav-links'>
-                <a>Home</a>
+                <Link to='/'>Home</Link>
                 <a>Features</a>
                 <a>Pricing</a>
                 <a>Blog</a>

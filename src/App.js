@@ -1,15 +1,20 @@
 import './App.css';
+import Home from './pages/Home'
 import NavBar from './components/NavBar'
-import Search from './components/Search';
-import Coins from './components/Coins';
+import {Route, Routes} from 'react-router-dom'
+import CoinView from './pages/CoinView'
 function App() {
   return (
-    <div>
+    <div className='themain'>
       <NavBar></NavBar>
-      <div class='main-container'>
-        <Search/>
-        <Coins/>
-      </div>
+          <Routes>
+            <Route path='/' element={<Home></Home>}></Route>
+          </Routes>
+        <div className='cview'>
+          <Routes>
+            <Route path='/coin/:coinid' element={<CoinView></CoinView>}></Route>
+          </Routes>
+        </div>
     </div>
   );
 }
